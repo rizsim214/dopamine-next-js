@@ -1,6 +1,8 @@
 "use client";
 
 import { useStore } from "@/libs/store/NavigationStore";
+import { Icons } from "./Icons";
+import { motion } from "framer-motion";
 
 interface NavLinkProps {
   title: string;
@@ -11,15 +13,16 @@ export const NavLinks = () => {
   const { isHamburgerNavigationClicked } = useStore();
   const links: NavLinkProps[] = [
     { title: "Home", url: "#" },
-    { title: "About", url: "#" },
+    { title: "About Us", url: "#" },
     { title: "Products", url: "#" },
   ];
 
   return (
-    <div
-      className={` ${
-        isHamburgerNavigationClicked ? "" : "hidden "
-      } bg-white md:flex justify-center items-center gap-20 md:bg-white md:me-5`}
+    <motion.div
+      initial={{ opacity: 1, y: 0 }}
+      className={`bg-white md:flex justify-center items-center gap-20 md:bg-white md:me-5 ${
+        isHamburgerNavigationClicked ? "" : " hidden "
+      }`}
     >
       <ul
         className={`text-center md:flex md:justify-evenly items-center md:bg-white `}
@@ -35,6 +38,7 @@ export const NavLinks = () => {
           </li>
         ))}
       </ul>
-    </div>
+      <Icons />
+    </motion.div>
   );
 };
