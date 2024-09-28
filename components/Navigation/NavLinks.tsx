@@ -16,22 +16,34 @@ export const NavLinks = () => {
     { title: "About Us", url: "#" },
     { title: "Products", url: "#" },
   ];
-
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        delayChildren: 0.7,
+      },
+    },
+  };
+  const item = {
+    hidden: { opacity: 0 },
+    show: { opacity: 1 },
+  };
+  const navLinkWrapperStyles = `bg-white md:flex justify-center items-center gap-20 md:bg-white md:me-5 ${
+    !isHamburgerNavigationClicked ? "hidden" : ""
+  }`;
+  const navListStyles = `text-center md:flex md:justify-evenly items-center md:bg-white `;
+  const navListItemStyles = `font-normal text-orange-500 hover:bg-orange-100 py-5 hover:text-orange-700 md:my-0 md:ml-8 md:hover:bg-white ;`;
   return (
     <motion.div
-      initial={{ opacity: 1, y: 0 }}
-      className={`bg-white md:flex justify-center items-center gap-20 md:bg-white md:me-5 ${
-        isHamburgerNavigationClicked ? "" : " hidden "
-      }`}
+      variants={container}
+      initial="hidden"
+      animate="show"
+      className={navLinkWrapperStyles}
     >
-      <ul
-        className={`text-center md:flex md:justify-evenly items-center md:bg-white `}
-      >
+      <ul className={navListStyles}>
         {links.map((link, index) => (
-          <li
-            className="font-normal text-orange-500 hover:bg-orange-100 py-5 hover:text-orange-700 md:my-0 md:ml-8 md:hover:bg-white "
-            key={index}
-          >
+          <li className={navListItemStyles} key={index}>
             <a href={link.url} className="tracking-widest">
               {link.title}
             </a>
